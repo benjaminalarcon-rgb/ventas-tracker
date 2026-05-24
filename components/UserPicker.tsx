@@ -6,6 +6,13 @@ import { useUser, AppUser } from '@/lib/userContext'
 
 const OPCIONES: { nombre: string; role: AppUser['role']; desc: string; icon: React.ReactNode; color: string }[] = [
   {
+    nombre: 'Benjamín Alarcón',
+    role: 'admin',
+    desc: 'Administrador',
+    icon: <Shield size={22} />,
+    color: '#A78BFA',
+  },
+  {
     nombre: 'Javier Badilla',
     role: 'vendedor',
     desc: 'Vendedor Canal',
@@ -18,13 +25,6 @@ const OPCIONES: { nombre: string; role: AppUser['role']; desc: string; icon: Rea
     desc: 'Vendedor Canal',
     icon: <User size={22} />,
     color: '#60A5FA',
-  },
-  {
-    nombre: 'Administrador',
-    role: 'admin',
-    desc: 'Acceso completo',
-    icon: <Shield size={22} />,
-    color: '#A78BFA',
   },
 ]
 
