@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { Eye, EyeOff } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -69,17 +71,31 @@ export default function LoginPage() {
             <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--muted)' }}>
               Contraseña
             </label>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              className="w-full px-4 py-3 rounded-xl placeholder-gray-600 outline-none transition-all"
-              style={inputBase}
-              onFocus={e => (e.target.style.borderColor = 'var(--gold)')}
-              onBlur={e => (e.target.style.borderColor = 'var(--border)')}
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                className="w-full px-4 py-3 rounded-xl placeholder-gray-600 outline-none transition-all"
+                style={{ ...inputBase, paddingRight: '44px' }}
+                onFocus={e => (e.target.style.borderColor = 'var(--gold)')}
+                onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(v => !v)}
+                style={{
+                  position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  color: showPassword ? 'var(--gold)' : 'var(--muted)',
+                  display: 'flex', alignItems: 'center', padding: 2,
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           {error && (
